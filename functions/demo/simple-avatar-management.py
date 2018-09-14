@@ -1,0 +1,1 @@
+../python/sample-avatar-management.py
