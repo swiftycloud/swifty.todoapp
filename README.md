@@ -1,4 +1,4 @@
-# swifty.demo - Functions and demo app for Swifty
+# swifty.todoapp - simple ToDo application based on Swifty and Vue.js
 
 Please read Quick Start Guide here:
 https://swifty.cloud/quick-start-guide/
