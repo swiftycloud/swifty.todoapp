@@ -2,26 +2,14 @@
   <el-row>
     <el-col :lg="10">
       <el-form :xs="24" :sm="18" :md="14" :lg="10" label-width="170px" label-position="left" ref="signUpForm" @submit.native.prevent="submitForm" :model="form">
+        <el-form-item label="User name">
+          <el-input placeholder="Name" type="text" v-model="form.name"></el-input>
+        </el-form-item>
         <el-form-item label="User email">
           <el-input placeholder="Email" type="text" v-model="form.email"></el-input>
         </el-form-item>
         <el-form-item label="City">
           <el-input placeholder="City" type="text" v-model="form.city"></el-input>
-        </el-form-item>
-        <el-form-item label="Auth URL">
-          <el-input placeholder="Auth function URL" type="text" v-model="$store.state.auth_endpoint" disabled></el-input>
-        </el-form-item>
-        <el-form-item label="Facebook Auth URL">
-          <el-input placeholder="Facebook function URL" type="text" v-model="$store.state.facebook_endpoint" disabled></el-input>
-        </el-form-item>
-        <el-form-item label="Profile Function URL">
-          <el-input placeholder="Profile management URL" type="text" v-model="$store.state.profile_endpoint" disabled></el-input>
-        </el-form-item>
-        <el-form-item label="Picture Function URL">
-          <el-input placeholder="Picture management URL" type="text" v-model="$store.state.picture_endpoint" disabled></el-input>
-        </el-form-item>
-        <el-form-item label="Tasks Function URL">
-          <el-input placeholder="Tasks management URL" type="text" v-model="$store.state.tasks_endpoint" disabled></el-input>
         </el-form-item>
         <el-form-item label="Picture">
           <el-upload
@@ -58,6 +46,7 @@ export default {
   data () {
     return {
       form: {
+        name: null,
         email: null,
         city: null,
         cookie: null,
@@ -70,7 +59,6 @@ export default {
 
   created () {
     this.fetchProfile()
-    this.fetchPicture()
 
     if ('code' in this.$route.query) {
       this.$store.dispatch('connectFacebook', {
@@ -99,6 +87,7 @@ export default {
 
     submitForm () {
       return this.$store.dispatch('updateProfile', {
+        name: this.form.name,
         email: this.form.email,
         city: this.form.city
       }).then(() => {

@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import axios from 'axios'
 import md5 from 'blueimp-md5'
 import createPersistedState from "vuex-persistedstate"
+import * as config from '@/config'
 
 Vue.use(Vuex)
 
@@ -11,36 +12,16 @@ export default new Vuex.Store({
 
   state: {
     token: null,
-    auth_endpoint: null,
-    facebook_endpoint: null,
-    profile_endpoint: null,
-    picture_endpoint: null,
-    tasks_endpoint: null
+    auth_endpoint: config.AUTH_URL,
+    facebook_endpoint: config.FACEBOOK_URL,
+    profile_endpoint: config.PROFILE_URL,
+    picture_endpoint: config.PICTURE_URL,
+    tasks_endpoint: config.TASKS_URL
   },
 
   mutations: {
     updateToken (state, value) {
       state.token = value
-    },
-
-    updateAuthEndpoint (state, value) {
-      state.auth_endpoint = value
-    },
-
-    updateFacebookEndpoint (state, value) {
-      state.facebook_endpoint = value
-    },
-
-    updateProfileEndpoint (state, value) {
-      state.profile_endpoint = value
-    },
-
-    updatePictureEndpoint (state, value) {
-      state.picture_endpoint = value
-    },
-
-    updateTasksEndpoint (state, value) {
-      state.tasks_endpoint = value
     },
 
     clearToken (state) {
